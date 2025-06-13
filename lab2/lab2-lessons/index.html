@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <title>Фильтры и сортировка</title>
+  <link rel="stylesheet" href="CSS/style.css">
+  <script src="JavaScript/data.js"></script>
+  <script src="JavaScript/main.js"></script>
+  <script src="JavaScript/table.js"></script>
+  <script src="JavaScript/filter.js"></script>
+  <script src="JavaScript/sort.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Форма фильтрации -->
+    <form class="filter-form" id="filter">
+      <h3>Фильтр</h3>
+      <p class="block">
+        <label for="structure">Название:</label>
+        <input type="text" id="structure">
+      </p>
+      <p class="block">
+        <label for="category">Тип:</label>
+        <input type="text" id="category">
+      </p>
+      <p class="block">
+        <label for="country">Страна:</label>
+        <input type="text" id="country">
+      </p>
+      <p class="block">
+        <label for="city">Город:</label>
+        <input type="text" id="city">
+      </p>
+      <p class="block">
+        <label for="yearFrom">Год: </label>
+        <span >
+          от <input type="number" id="yearFrom">
+          до <input type="number" id="yearTo">
+        </span>
+      </p>
+      <p class="block">
+        <label for="heightFrom">Высота:</label>
+        <span >
+          от <input type="number" id="heightFrom">
+          до <input type="number" id="heightTo">
+        </span>
+      </p>
+
+      <!-- Кнопки для фильтрации -->
+      <div class="filter-actions">
+          <input type="button" value="Найти" onclick="filterTable(buildings,'list', document.getElementById('filter'))">
+          <input type="button" value="Очистить фильтры" onclick="clearFilter('list',buildings,document.getElementById('filter') )"> 
+      </div>
+    </form>
+
+    <!-- Форма сортировки -->
+    <form class="sort-form" id="sort">
+      <h3>Сортировка</h3>
+      <p>Сортировать по</p>
+
+      <!-- Первое поле сортировки -->
+      <div class="sort-fields">
+        <select id="fieldsFirst"
+          onchange="changeNextSelect('fieldsSecond',document.getElementById('fieldsFirst'))"></select>
+        по убыванию?
+        <input type="checkbox" id="fieldsFirstDesc">
+      </div>
+
+      <!-- Второе поле сортировки -->
+      <div class="sort-fields">
+        <select id="fieldsSecond"></select>
+        по убыванию?
+        <input type="checkbox" id="fieldsSecondDesc">
+      </div>
+
+      <!-- Кнопки для сортировки -->
+      <div class='sort-actions'>
+          <input type="button" value="Сортировать" onclick="sortTable('list',document.getElementById('sort'))"> 
+          <input type="button" value="Сбросить сортировку" onclick="breakSort('list')">
+      </div>
+    </form>
+  </div>
+
+  <!-- Таблица для отображения данных -->
+  <table id='list'></table>
+
+</body>
+
+</html>

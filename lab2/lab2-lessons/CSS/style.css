@@ -1,0 +1,64 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2em;
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body {
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid gainsboro;
+    padding: 10px;
+    
+}
+
+th {
+    text-align: center;
+    background-color: lightgrey;
+}
+
+td {
+    background-color: whitesmoke;
+}
+
+form {
+    margin: 0 20px;
+}
+
+.filter-fields {
+    display: flex;
+    flex-direction: column;
+}
+
+h3 {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    align-items: flex-end;
+}
+
+.block {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter-actions, .sort-actions {
+    display: flex;
+    width: 260px;
+    gap: 5px;
+}
+
+input[type='number'] {
+    width: 55px; 
+}
+
+p, div.sort-fields    {
+    margin: 14px 0; 
+}

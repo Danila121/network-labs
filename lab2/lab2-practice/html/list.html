@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<head>
+  <title>Список немецких автомобилей</title>
+</head>
+<body>
+  <p>
+    <a href="index.html">Немецкие автомобили</a> 
+  </p>
+  <p> 
+    <a href="list.html">Список немецких автомобилей</a>
+  </p>
+  <hr color="black">
+
+  <details>
+    <table border="0">
+      <summary> График</summary>
+      <tr align="center">
+        <td><b>Значение по оси ОХ</b></td>
+        <td><b>Результат</b></td>
+      </tr>
+      <tr>
+        <td>
+          <form>
+            <input type="radio" name="Xvalue" value="country">Производитель<br>
+            <input type="radio" name="Xvalue" value="cost">Цена<br>
+            <input type="radio" name="Xvalue" value="year">Год<br>
+          </form>
+        </td>
+        <td>
+          <form>
+            <input type="checkbox" name="result" value="power">Средняя мощность двигателя(л.с)<br>
+            <input type="checkbox" name="result" value="maxSpeed">Максимальная скорость<br>
+            <input type="checkbox" name="result" value="100km/h">Минимальный разгон до 100 км/ч<br>
+          </form>
+        </td>
+      <tr>
+    </table>
+  </details>
+
+  <details>
+    <summary>Фильтр</summary>
+    <p>
+      Название: <input id="filterName" type="text" placeholder="Не указано">
+    </p>
+    <p>
+      Производитель: <input id="filterManufacturer" type="text" placeholder="Не указано">
+    </p>
+    <p>
+      Цена (евро): от <input id="filterPriceMin" type="number" placeholder="Не указано"> до <input id="filterPriceMax" type="number" placeholder="Не указано">
+    </p>
+    <p>
+      Год производства: от <input id="filterYearMin" type="number" placeholder="Не указано"> до <input id="filterYearMax" type="number" placeholder="Не указано">
+    </p>
+    <p>
+      Мощность двигателя (л.с.): от <input id="filterPowerMin" type="number" placeholder="Не указано"> до <input id="filterPowerMax" type="number" placeholder="Не указано">
+    </p>
+    <p>
+      Максимальная скорость (км/ч): от <input id="filterSpeedMin" type="number" placeholder="Не указано"> до <input id="filterSpeedMax" type="number" placeholder="Не указано">
+    </p>
+    <p>
+      Разгон до 100 км/ч (сек): от <input id="filterAccelMin" type="number" placeholder="Не указано"> до <input id="filterAccelMax" type="number" placeholder="Не указано">
+    </p>
+    <input id="filterBtn" type="button" value="Найти">
+  </details>
+
+  <details>
+    <summary>Сортировка</summary>
+
+    <p>
+      Первый уровень:
+      <select id="sort1" name="first">
+        <option value="no">Нет</option>
+        <option value="name">Название</option>
+        <option value="brand">Производитель</option>
+        <option value="price">Цена</option>
+        <option value="year">Год производства</option>
+        <option value="power">Мощность двигателя</option>
+        <option value="maxSpeed">Максимальная скорость</option>
+      </select>
+      &nbsp;По убыванию? <input id="desc1" type="checkbox" value="1">
+    </p>
+
+    <p>
+      Второй уровень:
+      <select id="sort2" name="second">
+        <option value="no">Нет</option>
+        <option value="name">Название</option>
+        <option value="brand">Производитель</option>
+        <option value="price">Цена</option>
+        <option value="year">Год производства</option>
+        <option value="power">Мощность двигателя</option>
+        <option value="maxSpeed">Максимальная скорость</option>
+      </select>
+      &nbsp;По убыванию? <input id="desc2" type="checkbox" value="2">
+    </p>
+
+    <p>
+      Третий уровень:
+      <select id="sort3" name="third">
+        <option value="no">Нет</option>
+        <option value="name">Название</option>
+        <option value="brand">Производитель</option>
+        <option value="price">Цена</option>
+        <option value="year">Год производства</option>
+        <option value="power">Мощность двигателя</option>
+        <option value="maxSpeed">Максимальная скорость</option>
+      </select>
+      &nbsp;По убыванию? <input id="desc3" type="checkbox" value="3">
+    </p>
+
+    <input id="sortBtn" type="button" value="Сортировать">
+  </details>
+
+  <h2>Таблица автомобилей</h2>
+  <table  id="carsTable" border="1" cellpadding="5" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th>Производитель</th>
+        <th>Цена (евро)</th>
+        <th>Год производства</th>
+        <th>Мощность двигателя (л.с.)</th>
+        <th>Максимальная скорость (км/ч)</th>
+        <th>Разгон до 100 км/ч (сек)</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+    </tbody>
+  </table>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/table.js"></script>
+  <script src="../js/filter.js"></script>
+  <script src="../js/sort.js"></script>
+</body>
+</html>

@@ -79,38 +79,6 @@ function checkField(elem, canBeZero = true, fieldName = '') {
 
   if (val === '') {
     elem.classList.add('error');
-    result.innerHTML = `Введено пустое значение в поле "${fieldName}"`;
-    return false;
-  }
-
-  const num = Number(val);
-  if (isNaN(num) || !isFinite(num)) {
-    elem.classList.add('error');
-    result.innerHTML = `Введено неверное значение в поле "${fieldName}"`;
-    return false;
-  }
-
-  if (!canBeZero && num === 0) {
-    elem.classList.add('error');
-    result.innerHTML = `На ноль делить нельзя (поле "${fieldName}")`;
-    return false;
-  }
-
-  return true;
-}
-
-
-function checkField(elem, canBeZero = true, fieldName = '') {
-  let result = document.getElementById('results');
-  const val = elem.value.trim();
-
-  elem.addEventListener('input', () => {
-    elem.classList.remove('error');
-    result.textContent = '';
-  }, { once: true });
-
-  if (val === '') {
-    elem.classList.add('error');
     result.textContent = `Введено пустое значение в поле "${fieldName}"`;
     return false;
   }

@@ -13,24 +13,25 @@ let createTable = (data, idTable) => {
 	}
 
 	table.append(tr);	
-
+	
 	// самостоятельно сформировать строки таблицы на основе массива data
 	data.forEach((item) => {
-    const tr1 = document.createElement('tr');
-    for(let el in item)
-		{
-			const td = document.createElement('td');
-			td.innerHTML = item[el];
-			tr1.appendChild(td);
-		}
-		table.appendChild(tr1)
+    // создать новую строку таблицы tr
+    let row = document.createElement('tr');
+    // перебрать ключи очередного элемента массива
+    for(let el in item){
+      // создать элемент td
+      let cell = document.createElement('td');
+      // занести в него соответствующее значение из массива 
+      cell.innerHTML = item[el];
+      // добавить элемент td к строке
+      row.appendChild(cell);
+    };
+    // строку добавить в таблицу
+    table.appendChild(row);
 	});	
 }
-
 let clearTable = (idTable) => {
-	const table = document.getElementById(idTable);
-
-	for (let i = table.childNodes.length - 1 ; i >= 0 ; i--)
-		table.childNodes[i].remove();
-	
+  let table = document.getElementById(idTable);
+  table.innerHTML = '';
 }

@@ -7,8 +7,12 @@ let correspond = {
     "Год": ["yearFrom", "yearTo"],
     "Высота": ["heightFrom", "heightTo"]
 }
-
-
+/* Структура ассоциативного массива:
+{
+    input_id: input_value,
+    ...
+}
+*/
 let dataFilter = (dataForm) => {
     
     let dictFilter = {};
@@ -24,17 +28,29 @@ let dataFilter = (dataForm) => {
 
         // если поле типа text - приводим его значение к нижнему регистру
         if (item.type == "text") {
-            valInput = valInput.toLowerCase();
+          valInput = valInput.toLowerCase();
         } 
-        if (item.type == "number") {
-            if (valInput != '')
-                valInput = parseFloat(valInput);
-            else if ( valInput == '' && item.id.indexOf('From') != -1)
-                valInput = - Infinity;                
-            else if ( valInput == '' && item.id.indexOf('To') != -1)
-                valInput =  Infinity;
-        } 
+        /* САМОСТОЯТЕЛЬНО обработать значения числовых полей:
+        - если в поле занесено значение - преобразовать valInput к числу;
+        - если поле пусто и его id включает From  - занести в valInput 
+           -бесконечность
+        - если поле пусто и его id включает To  - занести в valInput 
+           +бесконечность
+        */
+        if (item.type === "number"){
+          if (valInput === ""){
 
+            if (item.id.includes("From")) {
+              valInput = -Infinity;
+            } else if (item.id.includes("To")) {
+              valInput = Infinity;
+            }
+
+          } else {
+            valInput = Number(valInput);
+          }
+        };
+         // формируем очередной элемент ассоциативного массива
         dictFilter[item.id] = valInput;
     }       
     return dictFilter;
@@ -64,31 +80,38 @@ let filterTable = (data, idTable, dataForm) =>{
                 val = item[key].toLowerCase() 
                 result &&= val.indexOf(datafilter[correspond[key]]) !== -1 
             }
-            else if (key == 'Год' || key == 'Высота')
-                {
-                    result &&= val >= datafilter[correspond[key][0]] && val <= datafilter[correspond[key][1]];
-                }  
+            // САМОСТОЯТЕЛЬНО проверить числовые поля на принадлежность интервалу
+            if (typeof val == 'number') {
+              if (key === 'Год' || key === 'Высота') {
+                result &&= val >= datafilter[correspond[key][0]] && val <= datafilter[correspond[key][1]];
+              }
+            }
          }
          return result;
-    });     
-    clearTable(idTable);
-    createTable(tableFilter, idTable);  
-}
+      });     
 
-function clearFilter(idTable,data, dataForm){
-    const inputs = dataForm.getElementsByTagName('input');
-    for ( let i = 0; i < inputs.length; i++ )
-    {
-      
-        const type = (inputs[i].getAttribute('type') );
-        if ( type == 'number' || type == 'text')
-        {
-            inputs[i].value = '';
-        }
-        
-    }
+    // САМОСТОЯТЕЛЬНО вызвать функцию, которая удаляет все строки таблицы с id=idTable
     clearTable(idTable);
-   
-    createTable(data, idTable);  
-    sortTable('list',document.getElementById('sort'));
+    // показать на странице таблицу с отфильтрованными строками
+    createTable(tableFilter, idTable);  
+    
+    let sortForm = document.getElementById('sort');
+    sortTable(idTable, sortForm); 
+};
+
+function clearFilter(idTable, data, dataForm){
+  let inputs = dataForm.getElementsByTagName('input');
+  for ( let i = 0; i < inputs.length; i++ )
+  {
+      let type = (inputs[i].getAttribute('type') );
+      if ( type == 'number' || type == 'text')
+      {
+          inputs[i].value = '';
+      }   
+  }
+  clearTable(idTable);
+  
+  createTable(data, idTable); 
+  let sortForm = document.getElementById('sort');
+  sortTable(idTable, sortForm); 
 }

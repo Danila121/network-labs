@@ -1,26 +1,37 @@
 document.addEventListener("DOMContentLoaded", function() {
     createTable(buildings, 'list');
-})
+    
+    let filterBtn = document.getElementById('filterBtn');
+    filterBtn.addEventListener('click',function(){
+      let form = document.getElementById('filter');
+      filterTable(buildings, 'list' , form);
+    });
 
-document.addEventListener("DOMContentLoaded", function() {
+    let clearBtn = document.getElementById('clearBtn');
+    clearBtn.addEventListener('click',function(){
+      let form = document.getElementById('filter');
+      clearFilter('list', buildings, form);
+    })
+
     document.getElementById('fieldsSecond').disabled = true;
-
     setSortSelects(buildings[0],document.getElementById('sort'));
+    document.getElementById('fieldsFirst').addEventListener('change', function() {
+        changeNextSelect('fieldsSecond', this);
+    });
+
+    document.getElementById('sortBtn').addEventListener('click', function () {
+      let table = document.getElementById('list');
+      let sortForm = document.getElementById('sort');
+      sortTable('list', sortForm); 
+    });
     
+    document.getElementById('resetSortBtn').addEventListener('click', () => {
+      resetSort();
+    });
+
+
 })
 
-let setSortSelect = (arr, sortSelect) => {
-    
-    // создаем OPTION Нет и добавляем ее в SELECT
-    sortSelect.append(createOption('Нет', 0));
-    
-    // перебираем все ключи переданного элемента массива данных
-    for (let i in arr) {
-       // создаем OPTION из очередного ключа и добавляем в SELECT
-       // значение атрибута VAL увеличиваем на 1, так как значение 0 имеет опция Нет
-        sortSelect.append(createOption(arr[i], Number(i) + 1));
-    }
-}   
 // формирование полей элемента списка с заданным текстом и значением
 
 let createOption = (str, val) => {
@@ -33,8 +44,18 @@ let createOption = (str, val) => {
 // формирование поля со списком 
 // параметры – массив со значениями элементов списка и элемент select
 
-
-
+let setSortSelect = (arr, sortSelect) => {
+    
+    // создаем OPTION Нет и добавляем ее в SELECT
+    sortSelect.append(createOption('Нет', 0));
+    
+    // перебираем все ключи переданного элемента массива данных
+    for (let i in arr) {
+       // создаем OPTION из очередного ключа и добавляем в SELECT
+       // значение атрибута VAL увеличиваем на 1, так как значение 0 имеет опция Нет
+        sortSelect.append(createOption(arr[i], Number(i) + 1));
+    }
+}
 //  формируем поля со списком для многоуровневой сортировки
 let setSortSelects = (data, dataForm) => { 
 
@@ -48,17 +69,14 @@ let setSortSelects = (data, dataForm) => {
         //формируем очередной SELECT
         setSortSelect(head, allSelect[j]);
         //САМОСТОЯТЕЛЬНО все SELECT, кроме первого, сделать неизменяемым
+        if (j > 0) {
+          allSelect[j].disabled = true;
+        }
     }
-   
-    //allSelect[1].disAble = true;
-	//document.getElementById('fieldsSecond').disAble = true;
-		
 }
-
 // настраиваем поле для следующего уровня сортировки
 let changeNextSelect = (nextSelectId, curSelect) => {
     
-  
     let nextSelect = document.getElementById(nextSelectId);
     
     nextSelect.disabled = false;

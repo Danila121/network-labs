@@ -31,119 +31,55 @@ let createSortArr = (data) => {
     }
     return sortArr; 
 };
+let sortTable = (idTable, dataForm) => {
+  let sortArr = createSortArr(dataForm);
+  if (sortArr.length === 0) return false;
 
-let sortTable = (idTable, data) => {
-    
-    // формируем управляющий массив для сортировки
-    let sortArr = createSortArr(data);
-    
-    // сортировать таблицу не нужно, во всех полях выбрана опция Нет
-    if (sortArr.length === 0) {
-        return false;
+  let table = document.getElementById(idTable);
+  let rows = Array.from(table.rows);
+  let header = rows.shift();
+
+  rows.sort((a, b) => {
+    for (let rule of sortArr) {
+      let col = rule.column;
+      let aVal = a.cells[col].innerHTML;
+      let bVal = b.cells[col].innerHTML;
+
+      let aNum = parseFloat(aVal);
+      let bNum = parseFloat(bVal);
+      let isNum = !isNaN(aNum) && !isNaN(bNum);
+
+      if (isNum) {
+        if (aNum > bNum) return rule.order ? -1 : 1;
+        if (aNum < bNum) return rule.order ? 1 : -1;
+      } else {
+        if (aVal > bVal) return rule.order ? -1 : 1;
+        if (aVal < bVal) return rule.order ? 1 : -1;
+      }
     }
-    //находим нужную таблицу
-    let table = document.getElementById(idTable);
+    return 0;
+  });
 
-    // преобразуем строки таблицы в массив 
-    let rowData = Array.from(table.rows);
-    
-    // удаляем элемент с заголовками таблицы
-    rowData.shift();
-    
-    //сортируем данные по возрастанию по всем уровням сортировки
-    // используется массив sortArr
-    
-    //console.log(document.getElementById('fieldsFirstDesc').checked );
-    rowData.sort((first, second) => {
-        //console.log(typeof(first)); 
-        for(let i in sortArr) {
+  table.innerHTML = '';
+  table.appendChild(header);
+  rows.forEach(row => table.appendChild(row));
+};
 
-            let key = sortArr[i].column;
-            //console.log(sortArr[i].order);
-            if (sortArr[i].order == false)
-            {
-                console.log(key);
-                if(key == 5 || key == 4)
-                {
-                    
-                    if (parseFloat(first.cells[key].innerHTML) > parseFloat( second.cells[key].innerHTML)) {
-                        return 1;
-                    } else if (parseFloat(first.cells[key].innerHTML) < parseFloat(second.cells[key].innerHTML)){
-                        return -1;
-                    }            
-                } else {
-                    if (first.cells[key].innerHTML > second.cells[key].innerHTML) {
-                        return 1;
-                    } else if (first.cells[key].innerHTML < second.cells[key].innerHTML){
-                        return -1;
-                    }
-                }
+function resetSort() {
+  let sortForm = document.getElementById('sort');
 
-            } else if (sortArr[i].order){
-                if(key == 5 || key == 4)
-                    {
-                        
-                        if (parseFloat(first.cells[key].innerHTML) < parseFloat( second.cells[key].innerHTML)) {
-                            return 1;
-                        } else if (parseFloat(first.cells[key].innerHTML) > parseFloat(second.cells[key].innerHTML)){
-                            return -1;
-                        }            
-                    } else {
-                        if (first.cells[key].innerHTML < second.cells[key].innerHTML) {
-                            return 1;
-                        } else if (first.cells[key].innerHTML > second.cells[key].innerHTML){
-                            return -1;
-                        }
-                    }
-            }
-            //if( document.getElementById('fieldsFirstDesc').checked = false)
-            
+  // Сброс селектов
+  let selects = sortForm.getElementsByTagName('select');
+  for (let i = 0; i < selects.length; i++) {
+    selects[i].value = '0';
+    if (i > 0) selects[i].disabled = true;
+  }
 
+  // Сброс чекбоксов
+  let checkboxes = sortForm.querySelectorAll('input[type=checkbox]');
+  checkboxes.forEach(chk => (chk.checked = false));
 
-        }
-        return 0;
-    });
-    
-    clearTable('list');
-    
-	// формируем заголовочную строку из ключей нулевого элемента массива
-		
-    let tr = document.createElement('tr');
-
-	for(key in buildings[0]) {
-		let th = document.createElement('th');
-		th.innerHTML = key;
-		tr.append(th);
-	}
-	rowData.unshift(tr);
-
-
-    rowData.forEach( item => { table.append(item)});
-    //const table = document.getElementById('list');
-    //table.append(rowData[0]); //console.log(rowData[0]);
-    // обновить таблицу на страницу
-    //...
-}
-
-function breakSort(idTable)
-{
-
-    const inputs = document.getElementById('sort').getElementsByTagName('select');
-    for ( let i = 0; i < inputs.length; i++ )
-    {
-        inputs[i].value = 0;   
-    }
-    const checkboxs = document.getElementById('sort').getElementsByTagName('input');
-    for ( let i = 0; i < checkboxs.length; i++ )
-    {
-        if(checkboxs[i].getAttribute('type') == 'checkbox') 
-            checkboxs[i].checked = false;
-    }
-    clearTable(idTable);
-    createTable(buildings, idTable);  
-    filterTable(buildings,'list', document.getElementById('filter')); 
-    //sortTable(idTable,document.getElementById('sort'));
-    inputs[1].disAbled = true;
-    
-    
+  // Перерисовываем таблицу с исходными (или отфильтрованными) данными
+  clearTable('list');
+  createTable(buildings, 'list'); // если фильтр есть — заменяй buildings на отфильтрованные данные
 }

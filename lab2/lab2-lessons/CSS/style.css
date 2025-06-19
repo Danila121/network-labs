@@ -1,64 +1,51 @@
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 2em;
-    border: 1px solid black;
-    margin-left: auto;
-    margin-right: auto;
+#list {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  text-align: left;
+  margin: 0 auto;
 }
 
-body {
-    width: 100%;
+#list th,
+#list td {
+  border: 1px solid #cccccc;
+  padding: 8px 12px;
 }
 
-td, th {
-    border: 1px solid gainsboro;
-    padding: 10px;
-    
+#list th {
+  background-color: #eeeeee;
+  font-weight: bold;
 }
 
-th {
-    text-align: center;
-    background-color: lightgrey;
+#list tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
 
-td {
-    background-color: whitesmoke;
+#filter{
+  display: flex;
+  flex-direction: column;
+  width: 15%;
 }
-
-form {
-    margin: 0 20px;
+#filter p{
+  display: flex;
+  justify-content: space-between;
 }
-
-.filter-fields {
-    display: flex;
-    flex-direction: column;
-}
-
-h3 {
-    text-align: center;
-}
-
 .container {
     display: flex;
     align-items: flex-end;
+    margin: 5px;
+    gap:20px;
+    padding:5px;
 }
-
-.block {
-    display: flex;
-    justify-content: space-between;
-}
-
-.filter-actions, .sort-actions {
-    display: flex;
-    width: 260px;
-    gap: 5px;
-}
-
 input[type='number'] {
     width: 55px; 
 }
-
-p, div.sort-fields    {
-    margin: 14px 0; 
+h3{
+  margin: 0 auto;
+}
+#sort{
+  display: flex;
+  flex-direction: column;
+  width: 15%;
 }

@@ -1,4 +1,7 @@
+let currentData = [...carsData];
 function renderTable(data) {
+  currentData = data;
+  
   const table = document.getElementById('carsTable');
   const tbody = table.querySelector('tbody');
   tbody.innerHTML = '';
@@ -18,4 +21,4 @@ function renderTable(data) {
   });
 }
 
-renderTable(carsData);
+renderTable(currentData);

@@ -99,7 +99,7 @@ let filterTable = (data, idTable, dataForm) =>{
     sortTable(idTable, sortForm); 
 };
 
-function clearFilter(idTable, data, dataForm){
+function clearAll(idTable, data, dataForm){
   let inputs = dataForm.getElementsByTagName('input');
   for ( let i = 0; i < inputs.length; i++ )
   {
@@ -109,9 +109,5 @@ function clearFilter(idTable, data, dataForm){
           inputs[i].value = '';
       }   
   }
-  clearTable(idTable);
-  
-  createTable(data, idTable); 
-  let sortForm = document.getElementById('sort');
-  sortTable(idTable, sortForm); 
+  resetSort();  
 }

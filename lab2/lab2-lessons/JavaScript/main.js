@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let clearBtn = document.getElementById('clearBtn');
     clearBtn.addEventListener('click',function(){
       let form = document.getElementById('filter');
-      clearFilter('list', buildings, form);
+      clearAll('list', buildings, form);
     })
 
     document.getElementById('fieldsSecond').disabled = true;
@@ -20,13 +20,13 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     document.getElementById('sortBtn').addEventListener('click', function () {
-      let table = document.getElementById('list');
       let sortForm = document.getElementById('sort');
       sortTable('list', sortForm); 
     });
     
     document.getElementById('resetSortBtn').addEventListener('click', () => {
-      resetSort();
+      let form = document.getElementById('filter');
+      clearAll('list', buildings, form);
     });
 
 

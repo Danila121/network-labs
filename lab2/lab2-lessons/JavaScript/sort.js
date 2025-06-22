@@ -68,18 +68,15 @@ let sortTable = (idTable, dataForm) => {
 function resetSort() {
   let sortForm = document.getElementById('sort');
 
-  // Сброс селектов
   let selects = sortForm.getElementsByTagName('select');
   for (let i = 0; i < selects.length; i++) {
     selects[i].value = '0';
     if (i > 0) selects[i].disabled = true;
   }
 
-  // Сброс чекбоксов
   let checkboxes = sortForm.querySelectorAll('input[type=checkbox]');
   checkboxes.forEach(chk => (chk.checked = false));
-
-  // Перерисовываем таблицу с исходными (или отфильтрованными) данными
+  
   clearTable('list');
-  createTable(buildings, 'list'); // если фильтр есть — заменяй buildings на отфильтрованные данные
+  createTable(buildings, 'list'); 
 }

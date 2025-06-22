@@ -20,7 +20,11 @@ function updateSortSelects() {
 
   for (let i = 0; i < selects.length; i++) {
     const select = selects[i];
-    const currentValue = select.value;
+    let currentValue = select.value;
+
+    if (currentValue !== 'no' && selectedValues.has(currentValue)) {
+      currentValue = 'no';
+    }
 
     select.innerHTML = '';
 
@@ -40,7 +44,11 @@ function updateSortSelects() {
       selectedValues.add(currentValue);
     }
   }
+
+  selects[1].disabled = selects[0].value === 'no';
+  selects[2].disabled = selects[1].value === 'no' || selects[1].disabled;
 }
+
 
 function sortCars() {
   const sortFields = [

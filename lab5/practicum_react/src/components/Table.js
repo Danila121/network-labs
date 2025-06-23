@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import TableHead from './TableHead.js';
 import TableBody from './TableBody.js';
 import Filter from './Filter.js'
@@ -21,6 +22,10 @@ const Table = (props) => {
     : dataTable.length;
 
   const n = Math.ceil(dataTable.length / amountRows);
+  useEffect(()=>{
+      setActivePage(n);
+    },[n]
+  )
   const arr = Array.from({ length: n }, (_, i) => i + 1);
 
   const pages = props.pagination !== false

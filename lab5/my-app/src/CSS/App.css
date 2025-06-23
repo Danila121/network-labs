@@ -1,0 +1,58 @@
+tr, td, th{
+  border: solid 1px black
+}
+th{
+  background-color: lightgray;
+}
+
+table {
+  width:100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+h3{
+  text-align: center;
+}
+.show {
+  display: table-row; 
+}
+
+.hide {
+  display: none;   
+}
+
+.tableFlex{
+  display:flex;
+  flex-direction: column;
+}
+
+.pagination{
+  text-align: center;
+  margin-top: 10px;
+}
+
+.page-number {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.page-number:hover {
+  background-color: #ddd;
+  color: #000;
+}
+
+.page-number.active {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+.showPagination{
+  text-align: center;
+  margin-top: 10px;
+  display: table-row;
+}

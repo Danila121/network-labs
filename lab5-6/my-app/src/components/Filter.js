@@ -88,15 +88,15 @@ const Filter = (props) => {
 
   return (
     <form onSubmit={handleSubmit} onReset={handleReset} ref={formRef}>
-      <details open>
+      <details>
         <summary>Фильтр</summary>
 
         <p>
-          <label>Название:</label><br />
+          <label>Название:</label>
           <input name="filterName" type="text" />
         </p>
         <p>
-          <label>Производитель:</label><br />
+          <label>Производитель:</label>
           <input name="filterManufacturer" type="text" />
         </p>
 

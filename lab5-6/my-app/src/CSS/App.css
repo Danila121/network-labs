@@ -56,3 +56,25 @@ h3{
   margin-top: 10px;
   display: table-row;
 }
+svg {
+    width: 800px;
+    height: 400px;
+}
+
+svg path, line {
+    fill: none;
+    stroke: black;
+    width: 1px;
+}
+ 
+svg text {
+    font: 8px Verdana;
+}
+.main{
+  display:flex;
+  flex-direction: column;
+  margin:auto;
+  padding:5px;
+}
+
+

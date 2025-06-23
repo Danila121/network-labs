@@ -54,7 +54,7 @@ const Table = (props) => {
   return (
     <>
       <Filter filtering={updateFilteredData} fullData={props.data} />
-      <Sort fullData={filteredData} sorting={updateSortedData} />
+      <Sort fullData={filteredData} data={ props.data } sorting={updateSortedData} />
 
       <table>
         <TableHead head={Object.keys(props.data[0])} />

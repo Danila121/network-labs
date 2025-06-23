@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Sort = ({ fullData, sorting }) => {
+const Sort = ({ fullData, sorting, data }) => {
   const [sort1, setSort1] = useState('no');
   const [desc1, setDesc1] = useState(false);
 
@@ -29,7 +29,6 @@ const Sort = ({ fullData, sorting }) => {
         return descending ? valB - valA : valA - valB;
       }
     };
-
     const levels = [
       { key: sort1, desc: desc1 },
       { key: sort2, desc: desc2 },
@@ -51,6 +50,16 @@ const Sort = ({ fullData, sorting }) => {
 
     sorting(sortedData);
   };
+  const handleClear = () => {
+    setSort1('no');
+    setDesc1(false);
+    setSort2('no');
+    setDesc2(false);
+    setSort3('no');
+    setDesc3(false);
+    sorting(data); 
+  };
+
 
   return (
     <details>
@@ -122,6 +131,7 @@ const Sort = ({ fullData, sorting }) => {
       </p>
 
       <button onClick={handleSort}>Сортировать</button>
+      <button onClick={handleClear} type="button">Очистить сортировку</button>
     </details>
   );
 };

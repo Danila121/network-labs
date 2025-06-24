@@ -82,7 +82,7 @@ const ChartDraw = (props) => {
 					.append("circle")
 					.attr("class", "dot-max")
 					.attr("r", 5)
-					.attr("cx", (d) => scaleX(d.labelX) + scaleX.bandwidth() / 2)
+					.attr("cx", (d) => scaleX(d.labelX) + scaleX.bandwidth() / 2 + 5)
 					.attr("cy", (d) => scaleY(d.values[1]))
 					.attr("transform", `translate(${margin.left}, ${margin.top})`)
 					.style("fill", "red");
@@ -94,7 +94,7 @@ const ChartDraw = (props) => {
 					.append("circle")
 					.attr("class", "dot-min")
 					.attr("r", 5)
-					.attr("cx", (d) => scaleX(d.labelX) + scaleX.bandwidth() / 2)
+					.attr("cx", (d) => scaleX(d.labelX) + scaleX.bandwidth() / 2 - 5)
 					.attr("cy", (d) => scaleY(d.values[0]))
 					.attr("transform", `translate(${margin.left}, ${margin.top})`)
 					.style("fill", "blue");

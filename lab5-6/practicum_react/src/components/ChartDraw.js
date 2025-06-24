@@ -56,11 +56,6 @@ const ChartDraw = (props) => {
 	useEffect(() => {
     const svg = d3.select(chartRef.current);
     svg.selectAll("*").remove();
-    //Если не выбрано
-    if (!props.showMax && !props.showMin) {
-      alert("Выберите хотя бы один тип высоты по оси OY");
-      return;
-    }
   
     // рисуем оси
     const xAxis = d3.axisBottom(scaleX);     
@@ -138,7 +133,9 @@ const ChartDraw = (props) => {
   }, [ props.data, props.showMax, props.showMin, height, margin.bottom, margin.left, margin.top, scaleX, scaleY, props.chartType, boundsHeight ]); 
 
   return (
+		<>
     <svg ref={ chartRef }>  </svg>
+		</>
   )
 }
 

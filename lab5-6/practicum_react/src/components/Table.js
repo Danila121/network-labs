@@ -11,6 +11,9 @@ const Table = (props) => {
   const updateDataTable = (value) => {
     setDataTable(value);
     setActivePage(1);
+    if (props.onFilter) {
+      props.onFilter(value);
+    }
   };
 
   const changeActive = (pageNum) => {
@@ -40,6 +43,10 @@ const Table = (props) => {
       ))
     : null;
 
+    console.log("props.body в TableBody:", props.body);
+
+console.log("props.data в Table:", props.data);
+console.log("dataTable:", dataTable);
   return (
     <>
       <h4>Фильтры</h4>

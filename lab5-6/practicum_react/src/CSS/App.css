@@ -66,3 +66,8 @@ svg path, line {
 svg text {
     font: 8px Verdana;
 }
+.checkbox-error {
+  outline: 2px solid red;
+  outline-offset: 2px;
+  border-radius: 3px;
+}

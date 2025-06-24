@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import ChartDraw from './ChartDraw.js';
 import * as d3 from "d3";
 
@@ -6,23 +6,24 @@ const Chart = (props) => {
   const [ox, setOx] = useState("Страна");
   const [oy, setOy] = useState([true, false])
   const [chartType, setChartType] = useState("scatter");
-  //Переменные для фильтра
-  const [nameFilter, setNameFilter] = useState("");
-  const [typeFilter, setTypeFilter] = useState("");
+  const [checkboxError, setCheckboxError] = useState(false);
 
-  const filteredData = useMemo(() => {
-    return props.data.filter(b =>
-      (b["Название"] ? b["Название"].toLowerCase() : "").includes(nameFilter.toLowerCase()) &&
-      (b["Тип"] ? b["Тип"].toLowerCase() : "").includes(typeFilter.toLowerCase())
-    );
-  }, [props.data, nameFilter, typeFilter]);
-  
   const handleSubmit = (event) => {        
     event.preventDefault();
-    setOx(event.target["ox"].value); 
-		setOy([event.target["oy"][0].checked, event.target["oy"][1].checked])	
-    setChartType(event.target["chartType"].value);	
-	}
+
+    const maxChecked = event.target["oy"][0].checked;
+    const minChecked = event.target["oy"][1].checked;
+
+    if (!maxChecked && !minChecked) {
+      setCheckboxError(true);
+      return;
+  }
+
+  setCheckboxError(false);
+  setOx(event.target["ox"].value); 
+  setOy([maxChecked, minChecked]);
+  setChartType(event.target["chartType"].value);	
+}
   const createArrGraph =(data, key)=>{   
       const groupObj = d3.group(data, d => d[key]);
       let arrGraph =[];
@@ -52,11 +53,12 @@ const Chart = (props) => {
 
         <p> Значение по оси OY </p>
 		    <div>
-        <input type="checkbox" name="oy" defaultChecked={ oy[0] === true } />
+        <input type="checkbox" name="oy" defaultChecked={ oy[0] === true } className={checkboxError ? "checkbox-error" : ""} />
 		      Максимальная высота <br/>
-        <input  type="checkbox" name="oy" />
+        <input  type="checkbox" name="oy" className={checkboxError ? "checkbox-error" : ""} />
 		      Минимальная высота
 		    </div>
+        {checkboxError && <div style={{ color: "red"}}>{<span>Выберите хотя бы одно значение</span>}</div>}
 
         <p>Тип диаграммы:</p>
         <select name="chartType" defaultValue={chartType}>
@@ -68,22 +70,7 @@ const Chart = (props) => {
           <button type="submit">Построить </button>
         </p>
       </form>    
-      <ChartDraw data={ createArrGraph(filteredData, ox) } showMax={ oy[0] } showMin={ oy[1] } chartType={chartType}/>
-      <div>
-      Название:
-      <input
-        type="text"
-        value={nameFilter}
-        onChange={(e) => setNameFilter(e.target.value)}
-      />
-      <p></p>
-      Type:
-      <input
-        type="text"
-        value={typeFilter}
-        onChange={(e) => setTypeFilter(e.target.value)}
-      />
-      </div>	
+      {!checkboxError && <ChartDraw data={ createArrGraph(props.data, ox) } showMax={ oy[0] } showMin={ oy[1] } chartType={chartType}/>}
 	</>
     )
 }

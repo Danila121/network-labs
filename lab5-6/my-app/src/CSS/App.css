@@ -76,5 +76,9 @@ svg text {
   margin:auto;
   padding:5px;
 }
-
+.checkbox-error {
+  outline: 2px solid red;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState} from "react";
 import ChartDraw from './ChartDraw.js';
 import * as d3 from "d3";
 
@@ -6,16 +6,28 @@ const Chart = (props) => {
   const [ox, setOx] = useState("Производитель");
   const [oy, setOy] = useState([true, false]);
   const [chartType, setChartType] = useState("scatter");
+  const [checkboxError, setCheckboxError] = useState(false);
+  const [canDrawChart, setCanDrawChart] = useState(false)
 
-  const handleSubmit = (event) => {
+
+  const handleSubmit = (event) => {        
     event.preventDefault();
-    setOx(event.target["ox"].value);
-    setOy([
-      event.target["oy"][0].checked,
-      event.target["oy"][1].checked
-    ]);
-    setChartType(event.target["chartType"].value);
-  };
+
+    const maxChecked = event.target["oy"][0].checked;
+    const minChecked = event.target["oy"][1].checked;
+
+    if (!maxChecked && !minChecked) {
+      setCheckboxError(true);
+      setCanDrawChart(false);
+      return;
+    }
+
+    setCheckboxError(false);
+    setCanDrawChart(true);
+    setOx(event.target["ox"].value); 
+    setOy([maxChecked, minChecked]);
+    setChartType(event.target["chartType"].value);	
+  }
 
   const createArrGraph = (data, key) => {
     const groupObj = d3.group(data, d => d[key]);
@@ -59,14 +71,33 @@ const Chart = (props) => {
             type="checkbox"
             name="oy"
             defaultChecked={oy[0]}
+            className={checkboxError ? "checkbox-error" : ""}
+
+            onChange={() => {
+              if (!checkboxError) return;
+              const boxes = document.getElementsByName("oy");
+              if (boxes[0].checked || boxes[1].checked) {
+                setCheckboxError(false);
+              }
+            }}
           /> Максимальное значение Макс. скорости <br />
           <input
             type="checkbox"
             name="oy"
             defaultChecked={oy[1]}
+            className={checkboxError ? "checkbox-error" : ""}
+
+            onChange={() => {
+              if (!checkboxError) return;
+              const boxes = document.getElementsByName("oy");
+              if (boxes[0].checked || boxes[1].checked) {
+                setCheckboxError(false);
+              }
+            }}
           /> Минимальное значение Макс. скорости
         </div>
-
+        {checkboxError && <div style={{ color: "red"}}>{<span>Выберите хотя бы одно значение</span>}</div>}
+        
         <p>Тип диаграммы:</p>
         <select name="chartType" defaultValue={chartType}>
           <option value="scatter">Точечная диаграмма</option>
@@ -78,12 +109,12 @@ const Chart = (props) => {
         </p>
       </form>
 
-      <ChartDraw
+      {canDrawChart && <ChartDraw
         data={createArrGraph(props.data, ox)}
         showMax={oy[0]}
         showMin={oy[1]}
         chartType={chartType}
-      />
+      />}
     </details>
   );
 };

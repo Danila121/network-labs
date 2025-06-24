@@ -22,6 +22,9 @@ const Table = (props) => {
   const updateFilteredData = (newFiltered) => {
     setFilteredData(newFiltered);
     setActivePage(1);
+    if (props.onFilter) {
+      props.onFilter(newFiltered); // поднимаем фильтр в App, чтобы график обновился
+    }
   };
 
   // Получаем отсортированные данные из Sort и обновляем состояние

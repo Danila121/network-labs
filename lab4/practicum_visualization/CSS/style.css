@@ -1,0 +1,109 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #e0e0e0;
+  font-weight: bold;
+}
+
+tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+tr:hover {
+  background-color: #dbe9ff;
+}
+#chooseForm{
+  display:flex;
+  flex-direction: column;
+  padding:5px;
+  gap:5px;
+}
+#drawBtn{
+  width:fit-content;
+  padding: 8px 16px;
+  background-color: #e0e0e0;
+  color: #333;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  margin-bottom: 10px;
+}
+#toggleTableBtn {
+  padding: 8px 16px;
+  background-color: #e0e0e0;
+  color: #333;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  margin-bottom: 10px;
+}
+
+#toggleTableBtn:hover {
+  background-color: #d0d0d0;
+}
+
+#toggleTableBtn:active {
+  background-color: #c0c0c0;
+  color: #000;
+}
+/* svg элемент */
+svg {
+    width: 800px;
+    height: 400px;
+}
+svg text {
+    font: 8px Verdana;
+}
+svg path, line {
+    fill: none;
+    stroke: #333333;
+    width: 1px;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;      
+  color: red;          
+  font-weight: bold;   
+  margin-top: 10px;    
+  background-color: #ffe6e6;
+  padding: 8px 12px;
+  border: 1px solid red;
+  border-radius: 4px;
+}
+input[type="checkbox"].error-checkbox {
+  outline: 2px solid red;
+  /* или, если хочешь, красная тень */
+  box-shadow: 0 0 3px 2px rgba(255, 0, 0, 0.7);
+}
+#error-msg{
+  width:fit-content;
+}
+#chartTypeSelect, #chartType{
+  width:fit-content;
+}

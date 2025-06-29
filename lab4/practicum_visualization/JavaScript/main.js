@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Снять ошибку при изменении любого чекбокса
   checkboxes.forEach((chk) => {
     chk.addEventListener("change", () => {
       hideError();

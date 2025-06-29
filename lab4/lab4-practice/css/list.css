@@ -1,0 +1,33 @@
+svg {
+    width: 800px;
+    height: 400px;
+}
+svg text {
+    font: 8px Verdana;
+}
+svg path, line {
+    fill: none;
+    stroke: #333333;
+    width: 1px;
+}
+
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;      
+  color: red;          
+  font-weight: bold;   
+  margin-top: 10px;    
+  background-color: #ffe6e6;
+  padding: 8px 12px;
+  border: 1px solid red;
+  border-radius: 4px;
+  width:fit-content;
+}
+input[type="checkbox"].error-checkbox {
+  outline: 2px solid red;
+  box-shadow: 0 0 3px 2px rgba(255, 0, 0, 0.7);
+}

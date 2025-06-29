@@ -98,7 +98,6 @@ svg path, line {
 }
 input[type="checkbox"].error-checkbox {
   outline: 2px solid red;
-  /* или, если хочешь, красная тень */
   box-shadow: 0 0 3px 2px rgba(255, 0, 0, 0.7);
 }
 #error-msg{

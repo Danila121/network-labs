@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Drawer from '@mui/material/Drawer';
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom';
 
 interface ComponentProps {
   active: string;
@@ -26,15 +27,21 @@ function Navbar({ active }: ComponentProps) {
 
       <Toolbar sx={{ justifyContent: 'center' }}>
         <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
-          <Button color="inherit" variant={active === '1' ? 'outlined' : 'text'}>
-            Главная страница
-          </Button>
-          <Button color="inherit" variant={active === '2' ? 'outlined' : 'text'}>
-            Таблица лучших
-          </Button>
-          <Button color="inherit" variant={active === '3' ? 'outlined' : 'text'}>
-            Поддержанные решения
-          </Button>
+          <Link to="/">
+            <Button color="inherit" variant={active === '1' ? 'outlined' : 'text'}>
+              Главная страница
+            </Button>
+          </Link>
+          <Link to="/list">
+            <Button color="inherit" variant={active === '2' ? 'outlined' : 'text'}>
+              Таблица 
+            </Button>
+          </Link>
+          <Link to="/chart">
+            <Button color="inherit" variant={active === '3' ? 'outlined' : 'text'}>
+              График
+            </Button>
+          </Link>
         </Box>
         <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
           <IconButton color="inherit" onClick={toggleDrawer(true)}>
@@ -53,15 +60,21 @@ function Navbar({ active }: ComponentProps) {
             gap: 1,
           }}
         >
-          <Button color="inherit" variant={active === '1' ? 'outlined' : 'text'} sx={{ color: 'white' }} onClick={toggleDrawer(false)}>
-            Главная страница
-          </Button>
-          <Button color="inherit" variant={active === '2' ? 'outlined' : 'text'} sx={{ color: 'white' }} onClick={toggleDrawer(false)}>
-            Таблица
-          </Button>
-          <Button color="inherit" variant={active === '3' ? 'outlined' : 'text'} sx={{ color: 'white' }} onClick={toggleDrawer(false)}>
-            Поддержанные решения
-          </Button>
+          <Link to="/">
+            <Button color="inherit" variant={active === '1' ? 'outlined' : 'text'} sx={{ color: 'white' }} onClick={toggleDrawer(false)}>
+              Главная страница
+            </Button>
+          </Link>
+          <Link to="/list">
+            <Button color="inherit" variant={active === '2' ? 'outlined' : 'text'} sx={{ color: 'white' }} onClick={toggleDrawer(false)}>
+              Таблица
+            </Button>
+          </Link>
+          <Link to="/chart">
+            <Button color="inherit" variant={active === '3' ? 'outlined' : 'text'} sx={{ color: 'white' }} onClick={toggleDrawer(false)}>
+              График
+            </Button>
+          </Link>
         </Box>
       </Drawer>
     </AppBar>

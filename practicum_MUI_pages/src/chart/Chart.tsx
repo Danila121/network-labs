@@ -39,7 +39,6 @@ function Chart() {
         </FormControl>
       </Box>
 
-      {/* ВОТ ТУТ ДОБАВЛЯЕМ ДИАГРАММУ */}
       <GroupChart data={groupData} />
 
       <Box sx={{ flex: 1 }}>

@@ -1,36 +1,45 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import car1 from '../images/car5.jpg';
-import car2 from '../images/car6.jpg';
-import car3 from '../images/car7.jpg';
-import car4 from '../images/car8.jpg';
-import car5 from '../images/car9.jpg';
-import car6 from '../images/car4.jpg';
+import { Link } from 'react-router-dom';
+
+import car1 from '../../images/car5.jpg';
+import car2 from '../../images/car6.jpg';
+import car3 from '../../images/car7.jpg';
+import car4 from '../../images/car8.jpg';
+import car5 from '../../images/car9.jpg';
+import car6 from '../../images/car4.jpg';
 
 const Main = () => {
   return (
     <main>
       <Box display="flex" bgcolor="gray" color="white" flexDirection="column">
+
+        {/* Блок 1 */}
         <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} m={{ xs: 0, md: "3px" }}>
-          <Box
-            display="flex"
-            flexDirection="column"
-            width={{ xs: 'auto', md: '66.66%' }}
-            p={4}
-          >
-            <img src={car1} alt="Volkswagen W12" style={{ width: '100%', height: 300 }} />
+          <Box display="flex" flexDirection="column" width={{ xs: 'auto', md: '66.66%' }} p={4}>
+            <Box component={Link} to="/Car/1" sx={{ display: 'block' }}>
+              <Box
+                component="img"
+                src={car1}
+                alt="Volkswagen W12"
+                sx={{ width: '100%', height: 300, objectFit: 'cover', borderRadius: 1, cursor: 'pointer' }}
+              />
+            </Box>
             <Typography variant="h5" align="center" mt={2}>Volkswagen W12</Typography>
             <Typography textAlign="justify" mt={1}>
               Это мощный и надежный автомобиль с высокими показателями безопасности и производительности.
             </Typography>
           </Box>
-          <Box
-            display="flex"
-            flexDirection="column"
-            width={{ xs: 'auto', md: '33.33%' }}
-            p={4}
-          >
-            <img src={car2} alt="BMW M850i" style={{ width: '100%', height: 300 }} />
+
+          <Box display="flex" flexDirection="column" width={{ xs: 'auto', md: '33.33%' }} p={4}>
+            <Box component={Link} to="/Car/2" sx={{ display: 'block' }}>
+              <Box
+                component="img"
+                src={car2}
+                alt="BMW M850i"
+                sx={{ width: '100%', height: 300, objectFit: 'cover', borderRadius: 1, cursor: 'pointer' }}
+              />
+            </Box>
             <Typography variant="h5" align="center" mt={2}>BMW M850i</Typography>
             <Typography textAlign="justify" mt={1}>
               Инновационный дизайн и высокие технологии делают этот автомобиль идеальным выбором для современного водителя.
@@ -38,35 +47,19 @@ const Main = () => {
           </Box>
         </Box>
 
+        {/* Блок 2 */}
         <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} m={{ xs: 0, md: 3 }}>
-          <Box
-            display="flex"
-            flexDirection="column"
-            width={{ xs: 'auto', md: '50%' }}
-            p={4}
-            m={{ xs: 0, md: 1 }}
-            sx={{border:{xs:"none", md:"1px solid white"}}}
-          >
+          <Box display="flex" flexDirection="column" width={{ xs: 'auto', md: '50%' }} p={4} m={{ xs: 0, md: 1 }} sx={{ border: { xs: "none", md: "1px solid white" } }}>
             <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }}>
-              <Box
-                component="img"
-                src={car3}
-                alt="BMW M850i"
-                sx={{
-                  width: { xs: '100%', md: '50%' },
-                  height: 300
-                }}
-              />
-              <Typography
-                variant="h5"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: { xs: 'center', md: 'flex-start' },
-                  px: 2,
-                  width: { xs: '100%', md: '50%' },
-                }}
-              >
+              <Box component={Link} to="/Car/3" sx={{ display: 'block', width: { xs: '100%', md: '50%' } }}>
+                <Box
+                  component="img"
+                  src={car3}
+                  alt="BMW M850i"
+                  sx={{ width: '100%', height: 300, objectFit: 'cover', cursor: 'pointer', borderRadius: 1 }}
+                />
+              </Box>
+              <Typography variant="h5" sx={{ display: 'flex', alignItems: 'center', justifyContent: { xs: 'center', md: 'flex-start' }, px: 2, width: { xs: '100%', md: '50%' } }}>
                 BMW M850i
               </Typography>
             </Box>
@@ -75,34 +68,17 @@ const Main = () => {
             </Typography>
           </Box>
 
-          <Box
-            display="flex"
-            flexDirection="column"
-            width={{ xs: 'auto', md: '50%' }}
-            p={4}
-            m={{ xs: 0, md: 1 }}
-            sx={{border:{xs:"none", md:"1px solid white"}}}
-          >
+          <Box display="flex" flexDirection="column" width={{ xs: 'auto', md: '50%' }} p={4} m={{ xs: 0, md: 1 }} sx={{ border: { xs: "none", md: "1px solid white" } }}>
             <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }}>
-              <Box
-                component="img"
-                src={car4}
-                alt="Audi RS7"
-                sx={{
-                  width: { xs: '100%', md: '50%' },
-                  height: 300,
-                }}
-              />
-              <Typography
-                variant="h5"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: { xs: 'center', md: 'flex-start' },
-                  px: 2,
-                  width: { xs: '100%', md: '50%' }
-                }}
-              >
+              <Box component={Link} to="/Car/4" sx={{ display: 'block', width: { xs: '100%', md: '50%' } }}>
+                <Box
+                  component="img"
+                  src={car4}
+                  alt="Audi RS7"
+                  sx={{ width: '100%', height: 300, objectFit: 'cover', cursor: 'pointer', borderRadius: 1 }}
+                />
+              </Box>
+              <Typography variant="h5" sx={{ display: 'flex', alignItems: 'center', justifyContent: { xs: 'center', md: 'flex-start' }, px: 2, width: { xs: '100%', md: '50%' } }}>
                 Audi RS7
               </Typography>
             </Box>
@@ -112,35 +88,19 @@ const Main = () => {
           </Box>
         </Box>
 
+        {/* Блок 3 */}
         <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} m={{ xs: 0, md: 3 }}>
-          <Box
-            display="flex"
-            flexDirection="column"
-            width={{ xs: 'auto', md: '50%' }}
-            p={4}
-            m={{ xs: 0, md: 1 }}
-            sx={{border:{xs:"none", md:"1px solid white"}}}
-          >
+          <Box display="flex" flexDirection="column" width={{ xs: 'auto', md: '50%' }} p={4} m={{ xs: 0, md: 1 }} sx={{ border: { xs: "none", md: "1px solid white" } }}>
             <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }}>
-              <Box
-                component="img"
-                src={car5}
-                alt="Mercedes-Benz S-Class"
-                sx={{
-                  width: { xs: '100%', md: '50%' },
-                  height: 300,
-                }}
-              />
-              <Typography
-                variant="h5"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: { xs: 'center', md: 'flex-start' },
-                  px: 2,
-                  width: { xs: '100%', md: '50%' }
-                }}
-              >
+              <Box component={Link} to="/Car/5" sx={{ display: 'block', width: { xs: '100%', md: '50%' } }}>
+                <Box
+                  component="img"
+                  src={car5}
+                  alt="Mercedes-Benz S-Class"
+                  sx={{ width: '100%', height: 300, objectFit: 'cover', cursor: 'pointer', borderRadius: 1 }}
+                />
+              </Box>
+              <Typography variant="h5" sx={{ display: 'flex', alignItems: 'center', justifyContent: { xs: 'center', md: 'flex-start' }, px: 2, width: { xs: '100%', md: '50%' } }}>
                 Mercedes-Benz S-Class
               </Typography>
             </Box>
@@ -149,34 +109,17 @@ const Main = () => {
             </Typography>
           </Box>
 
-          <Box
-            display="flex"
-            flexDirection="column"
-            width={{ xs: 'auto', md: '50%' }}
-            p={4}
-            m={{ xs: 0, md: 1 }}
-            sx={{border:{xs:"none", md:"1px solid white"}}}
-          >
+          <Box display="flex" flexDirection="column" width={{ xs: 'auto', md: '50%' }} p={4} m={{ xs: 0, md: 1 }} sx={{ border: { xs: "none", md: "1px solid white" } }}>
             <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }}>
-              <Box
-                component="img"
-                src={car6}
-                alt="Porsche 911"
-                sx={{
-                  width: { xs: '100%', md: '50%' },
-                  height: 300,
-                }}
-              />
-              <Typography
-                variant="h5"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: { xs: 'center', md: 'flex-start' },
-                  px: 2,
-                  width: { xs: '100%', md: '50%' }
-                }}
-              >
+              <Box component={Link} to="/Car/6" sx={{ display: 'block', width: { xs: '100%', md: '50%' } }}>
+                <Box
+                  component="img"
+                  src={car6}
+                  alt="Porsche 911"
+                  sx={{ width: '100%', height: 300, objectFit: 'cover', cursor: 'pointer', borderRadius: 1 }}
+                />
+              </Box>
+              <Typography variant="h5" sx={{ display: 'flex', alignItems: 'center', justifyContent: { xs: 'center', md: 'flex-start' }, px: 2, width: { xs: '100%', md: '50%' } }}>
                 Porsche 911
               </Typography>
             </Box>
@@ -185,6 +128,7 @@ const Main = () => {
             </Typography>
           </Box>
         </Box>
+
       </Box>
     </main>
   );

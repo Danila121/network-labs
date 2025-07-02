@@ -6,7 +6,6 @@ function drawSkyscraper(svg) {
     .style("stroke-width", 2)
     .style("fill", "#87CEEB"); // светло-голубой цвет здания
 
-  // Сам небоскрёб - большой прямоугольник
   building.append("rect")
     .attr("x", 0)
     .attr("y", 0)
@@ -14,7 +13,6 @@ function drawSkyscraper(svg) {
     .attr("height", 300)
     .style("fill", "#4682B4"); // более темный синий
 
-  // Рисуем 6 окон — маленькие прямоугольники
   const windowWidth = 30;
   const windowHeight = 40;
   const marginX = 15;
@@ -29,7 +27,7 @@ function drawSkyscraper(svg) {
         .attr("y", marginY + row * (windowHeight + marginY))
         .attr("width", windowWidth)
         .attr("height", windowHeight)
-        .style("fill", "#ADD8E6") // светло-голубой цвет окон
+        .style("fill", "#ADD8E6")
         .style("stroke", "black")
         .style("stroke-width", 1);
     }

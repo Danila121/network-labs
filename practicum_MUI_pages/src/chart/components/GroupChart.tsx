@@ -68,7 +68,6 @@ function GroupChart({ data }: GroupChartProps) {
         />
       )}
 
-      {/* Потом настройки под диаграммой */}
       <SettingChart series={series} setSeries={setSeries} isBar={isBar} setIsBar={setIsBar} />
     </Container>
   );

@@ -45,7 +45,7 @@ function SettingChart({ series, setSeries, isBar, setIsBar }: CheckboxProps) {
         <RadioGroup
           name="group-radio"
           value={isBar ? "bar" : "dot"}
-          onChange={handleRadioChange}  // <-- сюда добавляем обработчик
+          onChange={handleRadioChange}  
         >
           <FormControlLabel
             value="bar"
